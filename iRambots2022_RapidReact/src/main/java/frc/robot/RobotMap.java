@@ -6,6 +6,8 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.*;
@@ -112,7 +114,8 @@ public static WPI_TalonSRX armMotor;
   shooterMotor = new WPI_VictorSPX(7);
   directionalMotor = new WPI_VictorSPX(8);
   armMotor = new WPI_TalonSRX(9);
-
+  armMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+  armMotor.setNeutralMode(NeutralMode.Brake);
 //Define Options for Differential Drive
   driveTrainDifferentialDrive.setSafetyEnabled(false);
   driveTrainDifferentialDrive.setExpiration(0.1);
@@ -221,6 +224,8 @@ public static WPI_TalonSRX armMotor;
  SmartDashboard.putNumber(   "IMU_Byte_Count",       RobotMap.ahrs.getByteCount());
  SmartDashboard.putNumber(   "IMU_Update_Count",     RobotMap.ahrs.getUpdateCount());
  
+ //Arm Encoder Distance
+ SmartDashboard.putNumber("Arm Distance", Robot.arm.getArmEncoder());
   }
 
 

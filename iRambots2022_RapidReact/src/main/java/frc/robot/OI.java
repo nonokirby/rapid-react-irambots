@@ -22,8 +22,9 @@ import frc.robot.commands.putDown;
 //import frc.robot.commands.ccwRoller;
 import frc.robot.commands.armWest;
 import frc.robot.commands.armEast;
-import frc.robot.commands.armManual;
-import frc.robot.commands.armRetract;
+import frc.robot.commands.armUpLimited;
+import frc.robot.commands.armDownLimited;
+import frc.robot.commands.armDownLimited;
 import frc.robot.commands.hookEast;
 import frc.robot.commands.hookWest;
 /**
@@ -133,8 +134,8 @@ public OI() {
   
 
 
-  btn1a.whileHeld(new armManual());
-  btn2a.whileHeld(new armRetract());
+  btn1a.whileHeld(new armUpLimited());
+  btn2a.whileHeld(new armDownLimited());
   btn3a.whileHeld(new hookEast());
   btn4a.whileHeld(new hookWest());
   btn5a.whileHeld(new shooterManual());
@@ -143,14 +144,14 @@ public OI() {
   btn8a.whileHeld(new armEast());
   btn9a.whileHeld(new putDown());
   btn10a.whileHeld(new putDown());
-  btn11a.whileHeld(new armManual());
-  btn12a.whileHeld(new armRetract());
+  btn11a.whileHeld(new armUpLimited());
+  btn12a.whileHeld(new armDownLimited());
 
 //input port 2 button mapping
 
   btn1b.whileHeld(new cargoVert());
   //btn1b.whileHeld(new intakeCell());
-  btn2b.whileHeld(new armManual());
+  btn2b.whileHeld(new armUpLimited());
   btn3b.whileHeld(new shooterManual());
   btn4b.whileHeld(new putDown());
   btn5b.whileHeld(new fullShooter());
@@ -159,17 +160,17 @@ public OI() {
   btn8b.whileHeld(new hookWest());
   btn9b.whileHeld(new armWest());
   btn10b.whileHeld(new armEast());
-  btn11b.whileHeld(new armManual());
-  btn12b.whileHeld(new armRetract());
+  btn11b.whileHeld(new armUpLimited());
+  btn12b.whileHeld(new armDownLimited());
 
   btn1c.whileHeld(new cargoVert());
   //btn1c.whileHeld(new intakeCell());
-  btn2c.whileHeld(new armManual());
+  btn2c.whileHeld(new armUpLimited());
   btn3c.whileHeld(new armWest());
   btn4c.whileHeld(new hookWest());
   btn5c.whileHeld(new hookEast());
   btn6c.whileHeld(new shooterManual());
-  btn7c.whileHeld(new armRetract());
+  btn7c.whileHeld(new armDownLimited());
   btn8c.whileHeld(new armEast());
 
 }

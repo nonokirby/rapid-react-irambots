@@ -11,6 +11,9 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 public class arm extends Subsystem {
 
     private final WPI_TalonSRX armMotorVictorSPX = RobotMap.armMotor;
@@ -21,20 +24,32 @@ public class arm extends Subsystem {
 }
 
 
-//armVert makes the motors run to lift up the arm 
-public void armVert() {
-    armMotorVictorSPX.set(-1.0);
-
-}
-//armDown makes the motor run in reverse to bring the arm down
-public void armDown() {
-    armMotorVictorSPX.set(1.0);
-
-}
-public void stop() {
-    armMotorVictorSPX.set(0.0);
-
-}
-
+    //armVert makes the motors run to lift up the arm 
+    public void armVert() {
+        armMotorVictorSPX.set(-1.0);
+    }
+    //armDown makes the motor run in reverse to bring the arm down
+    public void armDown() {
+        armMotorVictorSPX.set(1.0);
+    }
+    public void stop() {
+        armMotorVictorSPX.set(0.0);
+    }
+    //Encoder commands
+    public void resetEncoder() {
+        armMotorVictorSPX.setSelectedSensorPosition(0);
+    }
+    public double getArmEncoder() {
+        return armMotorVictorSPX.getSelectedSensorPosition();
+    }
+    public void moveArm(double speed){
+        if(speed > 0 && getArmEncoder() <= 0){
+          armMotorVictorSPX.set(ControlMode.PercentOutput, speed);
+        } else if(speed < 0 && getArmEncoder() >= -110000){
+          armMotorVictorSPX.set(ControlMode.PercentOutput, speed);
+        } else {
+          armMotorVictorSPX.set(ControlMode.PercentOutput, 0);
+        }
+    }
 }
 
