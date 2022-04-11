@@ -18,7 +18,12 @@ import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+public class RobotContainer {
 
+
+
+
+}
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
