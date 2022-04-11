@@ -31,6 +31,48 @@ import frc.robot.commands.hookWest;
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
+
+
+
+
+
+
+
+public class RobotContainer {
+//controllers
+  public final static Joystick m_driver = new Joystick(OIConstants.kDriverController1Port);
+  public final static Joystick m_climber = new Joystick(OIConstants.kDriverController2Port);
+}
+
+public RobotContainer {
+ 
+ //configures button bindings
+configureButtonBindings();
+
+ //runs robot init
+this.initializeStartup
+ }
+
+
+private void configureButtonBindings() {
+ 
+ //arm limited
+ new JoystickButton(m_driver, 11).whenPressed(new armUpLimited)
+ new JoystickButton(m_driver, 12).whenPressed(new armDownLimited)
+	 
+ //arm manual
+ new JoystickButton(m_driver, 9).whenPressed
+ 
+ 
+ 
+  btn9b.whileHeld(new armWest());
+  btn10b.whileHeld(new armEast());
+  btn11b.whileHeld(new armUpLimited());
+  btn12b.whileHeld(new armDownLimited());
+
+ 
+ 
+}
 public class OI {
  
  
