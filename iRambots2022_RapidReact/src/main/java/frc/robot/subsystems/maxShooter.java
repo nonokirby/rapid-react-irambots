@@ -23,8 +23,8 @@ public class maxShooter extends Subsystem {
   
   
   public void maxVert() {
-    shooterMotorVictorSPX.set(-1);
-    cargoMotorVictorSPX.set(1);
+    shooterMotorVictorSPX.set(-0.85);
+    cargoMotorVictorSPX.set(0.85);
   }
 
 public void maxDown(){

@@ -79,7 +79,7 @@ public class Robot extends TimedRobot {
   public static shooterManual shooterManual;
   public static shooter shooter;
   public static putDown putDown;
-  public static OI oi;
+  public static RobotContainer RobotContainer;
   public static arm arm;
   public static Command m_autonomousCommand;
   public static DriveToPort DriveToPort;
@@ -99,7 +99,7 @@ public class Robot extends TimedRobot {
     new Thread(()-> {
       UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
     }).start();
-    
+    //TODO -31820.000000
     RobotMap.init();
     driveTrain = new driveTrain();
     shooter = new shooter();
@@ -111,7 +111,7 @@ public class Robot extends TimedRobot {
     armDirectional = new armDirectional();
    hookDirectional = new hookDirectional();
     maxShooter = new maxShooter();
-    oi = new OI();
+    RobotContainer = new RobotContainer();
 
     
     // m_chooser.addDefault("Default Auto", new autonomous());
@@ -129,12 +129,12 @@ public class Robot extends TimedRobot {
         double time = Timer.getFPGATimestamp();
         double startTime = Timer.getMatchTime();
 
-        if (time - startTime < 5.0) {
+        /*if (time - startTime < 5.0) {
           Robot.driveTrain.driveCurvature(-Robot.oi.joy1.getRawAxis(3) * 0.3, Robot.oi.joy1.getRawAxis(0) * 0.3, true);
         } else {
           Robot.driveTrain.driveCurvature(Robot.oi.joy1.getRawAxis(3) * 0.0, Robot.oi.joy1.getRawAxis(0) * 0.0, false);
 
-        }
+        }*/
 
       }
 
@@ -157,12 +157,12 @@ public class Robot extends TimedRobot {
         double time = Timer.getFPGATimestamp();
         double startTime = Timer.getMatchTime();
 
-        if (time - startTime < 0.5) {
+        /*if (time - startTime < 0.5) {
           Robot.driveTrain.driveCurvature(Robot.oi.joy1.getRawAxis(3) * 0, Robot.oi.joy1.getRawAxis(0) * .6, true);
         } else {
           Robot.driveTrain.driveCurvature(Robot.oi.joy1.getRawAxis(3) * 0.0, Robot.oi.joy1.getRawAxis(0) * 0.0, false);
 
-        }
+        }*/
 
       }
 
@@ -187,8 +187,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putNumber("Arm Distance", RobotMap.armMotor.getSelectedSensorPosition());
   }
-
+ 
   /**
    * This function is called once each time the robot enters Disabled mode. You
    * can use it to reset any subsystem information you want to clear when the
@@ -218,6 +219,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
      m_autonomousCommand = m_chooser.getSelected();
+     RobotMap.armMotor.setSelectedSensorPosition(0);
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
      * switch(autoSelected) { case "My Auto": autonomousCommand = new

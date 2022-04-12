@@ -24,9 +24,9 @@ public class DriveToPort extends Command {
         double startTime = Timer.getMatchTime();
         //TODO change joystick mapping for drivetrain here
         if ( startTime < 6.0) { 
-            Robot.driveTrain.driveCurvature(-Robot.oi.joy1.getRawAxis(3)* 0.7, Robot.oi.joy1.getRawAxis(0) * 0.7,true);
+            Robot.driveTrain.driveCurvature(-Robot.RobotContainer.m_arcade.getRawAxis(3)* 0.7, Robot.RobotContainer.m_arcade.getRawAxis(0) * 0.7,true);
         } else {
-            Robot.driveTrain.driveCurvature(Robot.oi.joy1.getRawAxis(3) * 0.0, Robot.oi.joy1.getRawAxis(0) * 0.0,false);
+            Robot.driveTrain.driveCurvature(Robot.RobotContainer.m_arcade.getRawAxis(3) * 0.0, Robot.RobotContainer.m_arcade.getRawAxis(0) * 0.0,false);
             
         }
       

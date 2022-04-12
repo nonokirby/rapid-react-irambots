@@ -43,13 +43,15 @@ public class arm extends Subsystem {
         return armMotorVictorSPX.getSelectedSensorPosition();
     }
     public void moveArm(double speed){
-        if(speed > 0 && getArmEncoder() <= 0){
+        if(speed < 0 && getArmEncoder() <= 2500){
+            //this is a test of github and wether or not it is stupid
           armMotorVictorSPX.set(ControlMode.PercentOutput, speed);
-        } else if(speed < 0 && getArmEncoder() >= -110000){
+        } else if(speed > 0 && getArmEncoder() >= -28512){
           armMotorVictorSPX.set(ControlMode.PercentOutput, speed);
-        } else {
-          armMotorVictorSPX.set(ControlMode.PercentOutput, 0);
         }
-    }
+          else {
+              armMotorVictorSPX.set(ControlMode.PercentOutput, 0);
+          }
+    }//TODO -29398.000000
 }
 

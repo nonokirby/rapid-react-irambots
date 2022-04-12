@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import frc.robot.subsystems.armDirectional;
 
 
 /**
@@ -107,16 +107,26 @@ public static WPI_TalonSRX armMotor;
 
 
   hookMotor = new WPI_VictorSPX(5);
+
   rollerMotor = new WPI_VictorSPX(6);
   rollerMotor.set(0.25);
+
   spinMotor = new WPI_VictorSPX(6);
   spinMotor.set(0.25);
+
   cargoMotor = new WPI_VictorSPX(6);
+
   shooterMotor = new WPI_VictorSPX(7);
+
   directionalMotor = new WPI_VictorSPX(8);
+  
   armMotor = new WPI_TalonSRX(9);
+
+//Motor Controller Parameters
   armMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
   armMotor.setNeutralMode(NeutralMode.Brake);
+  directionalMotor.setNeutralMode(NeutralMode.Brake);
+
 //Define Options for Differential Drive
   driveTrainDifferentialDrive.setSafetyEnabled(false);
   driveTrainDifferentialDrive.setExpiration(0.1);
@@ -226,7 +236,7 @@ public static WPI_TalonSRX armMotor;
  SmartDashboard.putNumber(   "IMU_Update_Count",     RobotMap.ahrs.getUpdateCount());
  
  //Arm Encoder Distance
- SmartDashboard.putNumber("Arm Distance", Robot.arm.getArmEncoder());
+ //SmartDashboard.putNumber("Arm Distance", RobotMap.armMotor.getSelectedSensorPosition());
   }
 
 

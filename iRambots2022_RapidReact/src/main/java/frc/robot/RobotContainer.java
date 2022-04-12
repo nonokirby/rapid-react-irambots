@@ -19,60 +19,77 @@ import frc.robot.commands.cwRoller;
 //import frc.robot.commands.intakeCell;
 import frc.robot.commands.cargoVert;
 import frc.robot.commands.putDown;
+import frc.robot.commands.resetArmEncoder;
 //import frc.robot.commands.ccwRoller;
 import frc.robot.commands.armWest;
 import frc.robot.commands.armEast;
+import frc.robot.commands.armManual;
+import frc.robot.commands.armRetract;
 import frc.robot.commands.armUpLimited;
 import frc.robot.commands.armDownLimited;
 import frc.robot.commands.armDownLimited;
 import frc.robot.commands.hookEast;
 import frc.robot.commands.hookWest;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 
-
-
-
-
-
-
-public class RobotContainer {
-//controllers
-  public final static Joystick m_driver = new Joystick(OIConstants.kDriverController1Port);
-  public final static Joystick m_climber = new Joystick(OIConstants.kDriverController2Port);
-}
-
-public RobotContainer {
+ public class RobotContainer {
+   //controllers
+   public final Joystick m_driver = new Joystick(1);
+   public final Joystick m_arcade = new Joystick(0);
  
- //configures button bindings
+ 
+ public RobotContainer() {
+//configures button bindings
 configureButtonBindings();
-
- //runs robot init
-this.initializeStartup
  }
 
-
 private void configureButtonBindings() {
- 
- //arm limited
- new JoystickButton(m_driver, 11).whenPressed(new armUpLimited)
- new JoystickButton(m_driver, 12).whenPressed(new armDownLimited)
-	 
- //arm manual
- new JoystickButton(m_driver, 9).whenPressed
- 
- 
- 
-  btn9b.whileHeld(new armWest());
-  btn10b.whileHeld(new armEast());
-  btn11b.whileHeld(new armUpLimited());
-  btn12b.whileHeld(new armDownLimited());
 
- 
- 
+//driver controller
+
+//arm limited
+new JoystickButton(m_driver, 11).whileHeld(new armUpLimited());
+new JoystickButton(m_driver, 12).whileHeld(new armDownLimited());
+
+//arm manual
+new JoystickButton(m_driver, 9).whileHeld(new armManual());
+new JoystickButton(m_driver, 10).whileHeld(new armRetract());
+
+//shooter
+new JoystickButton(m_driver, 3).whileHeld(new shooterManual());
+new JoystickButton(m_driver, 5).whileHeld(new fullShooter());
+
+//reverse shooter
+new JoystickButton(m_driver, 4).whileHeld(new putDown());
+new JoystickButton(m_driver, 6).whileHeld(new putDown());
+
+//hanger controller
+
+//small hooks
+new JoystickButton(m_arcade, 3).whileHeld(new hookEast());
+new JoystickButton(m_arcade, 4).whileHeld(new hookWest());
+
+//big hook
+new JoystickButton(m_arcade, 7).whileHeld(new armWest());
+new JoystickButton(m_arcade, 8).whileHeld(new armEast());
 }
+
+public Joystick getjoy1() {
+  return m_arcade;
+}
+public Joystick getjoy2() {
+  return m_driver;
+}}
+
+
+
+
+
+/*
 public class OI {
  
  
@@ -184,7 +201,7 @@ public OI() {
   btn6a.whileHeld(new fullShooter());
   btn7a.whileHeld(new armWest());
   btn8a.whileHeld(new armEast());
-  btn9a.whileHeld(new putDown());
+  btn9a.whileHeld(new resetArmEncoder());
   btn10a.whileHeld(new putDown());
   btn11a.whileHeld(new armUpLimited());
   btn12a.whileHeld(new armDownLimited());
@@ -200,8 +217,8 @@ public OI() {
   btn6b.whileHeld(new putDown());
   btn7b.whileHeld(new hookEast());
   btn8b.whileHeld(new hookWest());
-  btn9b.whileHeld(new armWest());
-  btn10b.whileHeld(new armEast());
+  btn9b.whileHeld(new armManual());
+  btn10b.whileHeld(new armRetract());
   btn11b.whileHeld(new armUpLimited());
   btn12b.whileHeld(new armDownLimited());
 
@@ -232,3 +249,4 @@ public Joystick getjoy2() {
 	//return null;
 }
 
+*/

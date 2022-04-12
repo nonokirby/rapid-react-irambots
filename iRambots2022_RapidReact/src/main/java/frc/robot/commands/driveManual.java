@@ -2,7 +2,7 @@
 package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-
+import frc.robot.RobotContainer;
 
 public class driveManual extends Command {
         public driveManual() {
@@ -21,8 +21,8 @@ public class driveManual extends Command {
         //Curvature Drive//
         ////////////////////
         //TODO edit joystick mapping for the drivetrain
-    double speed = Robot.oi.joy1.getRawAxis(1) - Robot.oi.joy1.getRawAxis(2) - -Robot.oi.joy2.getRawAxis(2);
-    double rotation = Robot.oi.joy1.getRawAxis(0) - Robot.oi.joy2.getRawAxis(1);
+    double speed = Robot.RobotContainer.m_arcade.getRawAxis(1) - Robot.RobotContainer.m_arcade.getRawAxis(2) - -Robot.RobotContainer.m_driver.getRawAxis(2);
+    double rotation = Robot.RobotContainer.m_arcade.getRawAxis(0) - Robot.RobotContainer.m_driver.getRawAxis(1);
     boolean quickTurn = speed > -0.15 && speed < 0.15;
 //creates internal dead zone within code without affecting the controller
     if( speed > -0.05 && speed < 0.05){
