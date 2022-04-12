@@ -9,7 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-import frc.robot.RobotMap;
+import frc.robot.Constants;
 
 /**
  * Add your docs here.
@@ -17,7 +17,7 @@ import frc.robot.RobotMap;
 public class armDirectional extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-private final WPI_VictorSPX directionalMotorVictorSPX = RobotMap.directionalMotor;
+private final WPI_VictorSPX directionalMotorVictorSPX = Constants.directionalMotor;
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

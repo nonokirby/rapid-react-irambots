@@ -12,7 +12,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import frc.robot.RobotMap;
+import frc.robot.Constants;
 import frc.robot.commands.driveManual;
 
 //@SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
@@ -22,20 +22,20 @@ public class driveTrain extends Subsystem {
   // here. Call these from Commands.
 
   
-  //private final WPI_VictorSPX leftMotorA = RobotMap.driveTrainLeftMotorA;
-  //private final WPI_VictorSPX leftMotorB = RobotMap.driveTrainLeftMotorB;
+  //private final WPI_VictorSPX leftMotorA = Constants.driveTrainLeftMotorA;
+  //private final WPI_VictorSPX leftMotorB = Constants.driveTrainLeftMotorB;
 
 
-  private final MotorControllerGroup leftMotors = RobotMap.driveTrainLeftMotors;
+  private final MotorControllerGroup leftMotors = Constants.driveTrainLeftMotors;
 
- // private final WPI_VictorSPX rightMotorA = RobotMap.driveTrainRightMotorA;
- // private final WPI_VictorSPX rightMotorB = RobotMap.driveTrainRightMotorB;
+ // private final WPI_VictorSPX rightMotorA = Constants.driveTrainRightMotorA;
+ // private final WPI_VictorSPX rightMotorB = Constants.driveTrainRightMotorB;
 
 
-  private final MotorControllerGroup rightMotors = RobotMap.driveTrainRightMotors;
+  private final MotorControllerGroup rightMotors = Constants.driveTrainRightMotors;
 
   
-  private final DifferentialDrive differentialDrive = RobotMap.driveTrainDifferentialDrive;
+  private final DifferentialDrive differentialDrive = Constants.driveTrainDifferentialDrive;
 public Object driveArcade;
 
   @Override

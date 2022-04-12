@@ -8,11 +8,11 @@
 package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.RobotMap;
+import frc.robot.Constants;
  
 public class cellRoller2 extends Subsystem {
 
-    private final WPI_VictorSPX spinMotorVictorSPX = RobotMap.spinMotor;
+    private final WPI_VictorSPX spinMotorVictorSPX = Constants.spinMotor;
     //@SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     @Override
     protected void initDefaultCommand() {

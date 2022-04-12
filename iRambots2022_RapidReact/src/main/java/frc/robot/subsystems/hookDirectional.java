@@ -5,12 +5,12 @@
 package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.RobotMap;
+import frc.robot.Constants;
 
 public class hookDirectional extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-private final WPI_VictorSPX hookMotorVictorSPX = RobotMap.hookMotor;
+private final WPI_VictorSPX hookMotorVictorSPX = Constants.hookMotor;
   @Override
   public void initDefaultCommand() {
   }

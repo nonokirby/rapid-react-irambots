@@ -7,13 +7,13 @@
 
 package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-import frc.robot.RobotMap;
+import frc.robot.Constants;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class maxShooter extends Subsystem {
 
-  private final WPI_VictorSPX shooterMotorVictorSPX = RobotMap.shooterMotor;
-  private final WPI_VictorSPX cargoMotorVictorSPX = RobotMap.cargoMotor;  
+  private final WPI_VictorSPX shooterMotorVictorSPX = Constants.shooterMotor;
+  private final WPI_VictorSPX cargoMotorVictorSPX = Constants.cargoMotor;  
 
 @Override
   public void initDefaultCommand() {

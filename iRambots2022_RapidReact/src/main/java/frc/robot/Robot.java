@@ -100,7 +100,7 @@ public class Robot extends TimedRobot {
       UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
     }).start();
     //TODO -31820.000000
-    RobotMap.init();
+    Constants.init();
     driveTrain = new driveTrain();
     shooter = new shooter();
     //cellRoller = new cellRoller();
@@ -148,8 +148,8 @@ public class Robot extends TimedRobot {
       @Override
       protected void initialize() {
         setTimeout(5.0);
-        RobotMap.ahrs.getRawGyroZ();
-        RobotMap.ahrs.reset();
+        Constants.ahrs.getRawGyroZ();
+        Constants.ahrs.reset();
       }
 
       @Override
@@ -187,7 +187,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putNumber("Arm Distance", RobotMap.armMotor.getSelectedSensorPosition());
+    SmartDashboard.putNumber("Arm Distance", Constants.armMotor.getSelectedSensorPosition());
   }
  
   /**
@@ -219,7 +219,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
      m_autonomousCommand = m_chooser.getSelected();
-     RobotMap.armMotor.setSelectedSensorPosition(0);
+     Constants.armMotor.setSelectedSensorPosition(0);
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
      * switch(autoSelected) { case "My Auto": autonomousCommand = new
@@ -237,8 +237,8 @@ public class Robot extends TimedRobot {
       @Override
       protected void initialize() {
          driveTrain.tankDrive(-.6, .6);
-        RobotMap.shooterMotor.set(-0.7);
-        RobotMap.cargoMotor.set(0.7);
+        Constants.shooterMotor.set(-0.7);
+        Constants.cargoMotor.set(0.7);
         
       }
 
@@ -250,8 +250,8 @@ public class Robot extends TimedRobot {
         double time = Timer.getFPGATimestamp();
         if (startTime - time == 13) {
            driveTrain.tankDrive(0.0, 0.0);
-           RobotMap.shooterMotor.set(0);
-           RobotMap.cargoMotor.set(0);
+           Constants.shooterMotor.set(0);
+           Constants.cargoMotor.set(0);
         }
          
          
@@ -271,7 +271,7 @@ public class Robot extends TimedRobot {
 
         @Override
         protected boolean isFinished() {
-          /*TODO Auto-generated method stub*/
+
           double startTime = Timer.getMatchTime();
           if (startTime == 9) {
             driveTrain.tankDrive(0.0, 0.0);
@@ -298,8 +298,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     driveTrain.tankDrive(0.0, 0.0);
-    RobotMap.shooterMotor.set(0.0);
-    RobotMap.cargoMotor.set(0.0);
+    Constants.shooterMotor.set(0.0);
+    Constants.cargoMotor.set(0.0);
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
