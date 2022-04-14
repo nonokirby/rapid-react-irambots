@@ -232,6 +232,8 @@ public class Robot extends TimedRobot {
     // schedule the autonomous command (example)
     // Scheduler.getInstance().add(drive);
     Scheduler.getInstance().add(new driveManual() {
+      double timeElapsed;
+
       @Override
       protected void initialize() {
          driveTrain.tankDrive(-.6, .6);

@@ -7,46 +7,55 @@
 
 package frc.robot.subsystems;
 
-
+//import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+//import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Constants;
 import frc.robot.commands.driveManual;
 
-
+//@SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
 public class driveTrain extends Subsystem {
- 
+  // Put methods for controlling this subsystem
+  // here. Call these from Commands.
+
+  
+  //private final WPI_VictorSPX leftMotorA = Constants.driveTrainLeftMotorA;
+  //private final WPI_VictorSPX leftMotorB = Constants.driveTrainLeftMotorB;
 
 
   private final MotorControllerGroup leftMotors = Constants.driveTrainLeftMotors;
+
+ // private final WPI_VictorSPX rightMotorA = Constants.driveTrainRightMotorA;
+ // private final WPI_VictorSPX rightMotorB = Constants.driveTrainRightMotorB;
+
+
   private final MotorControllerGroup rightMotors = Constants.driveTrainRightMotors;
+
   
   private final DifferentialDrive differentialDrive = Constants.driveTrainDifferentialDrive;
-
 public Object driveArcade;
 
   @Override
   public void initDefaultCommand() {
+    // Set the default command for a subsystem here.
     setDefaultCommand(new driveManual());
   }
-
   public MotorControllerGroup getLeftMotors() {
     return leftMotors;
   }
-
   public MotorControllerGroup getRightMotors(){
     return rightMotors;
   }
-
-  public void driveTank(final double left, final double right) {
+  /*public void driveTank(final double left, final double right) {
     differentialDrive.tankDrive(left, right);
-  }
+  }*/
   
-  public void driveArcade(final double speed, final double rotation) {
+  /*public void driveArcade(final double speed, final double rotation) {
     differentialDrive.arcadeDrive(speed, rotation);
-  }
+  }*/
 
    
  
@@ -62,8 +71,11 @@ public static Object getInstance() {
 }
 
 
-public void arcadeDrive(double speed, double rotation) {
-  differentialDrive.arcadeDrive(speed, rotation);
+
+ //public void driveArcade(double d, double e) {
+//}
+public void driveCurvature(double speed, double rotation, boolean quickTurn) {
+  differentialDrive.curvatureDrive(speed, rotation, quickTurn);
 }
 
 public void tankDrive(double left, double right) {
