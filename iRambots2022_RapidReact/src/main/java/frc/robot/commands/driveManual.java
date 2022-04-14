@@ -9,26 +9,25 @@ public class driveManual extends Command {
         requires(Robot.driveTrain);
     }
 
-    // Called just before this Command runs the first time
+   
     @Override
     protected void initialize() {
+      
     }
 
-    // Called repeatedly when this Command is scheduled to run
+
+
     @Override
     protected void execute() {
-        ////////////////////
-        //Curvature Drive//
-        ////////////////////
-        //TODO edit joystick mapping for the drivetrain
-    double speed = Robot.RobotContainer.m_arcade.getRawAxis(1) - Robot.RobotContainer.m_arcade.getRawAxis(2) - -Robot.RobotContainer.m_driver.getRawAxis(2);
-    double rotation = Robot.RobotContainer.m_arcade.getRawAxis(0) - Robot.RobotContainer.m_driver.getRawAxis(1);
-    boolean quickTurn = speed > -0.15 && speed < 0.15;
-//creates internal dead zone within code without affecting the controller
+        
+    double speed = -Robot.RobotContainer.m_driver.getRawAxis(2);
+    double rotation =  Robot.RobotContainer.m_driver.getRawAxis(1);
+
+    
     if( speed > -0.05 && speed < 0.05){
       speed = 0;
     }
-//creates internal dead zone within code without affecting the controller
+
     if( rotation > -0.05 && rotation < 0.05){
 
       rotation = 0;
@@ -37,23 +36,22 @@ public class driveManual extends Command {
 
         rotation = 0;
       }
-    Robot.driveTrain.driveCurvature(-speed, rotation, quickTurn);
+    Robot.driveTrain.driveArcade(-speed, rotation);
 
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+    
     @Override
     protected boolean isFinished() {
         return false;
     }
 
-    // Called once after isFinished returns true
+    
     @Override
     protected void end() {
+     
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
     @Override
     protected void interrupted() {
     }
