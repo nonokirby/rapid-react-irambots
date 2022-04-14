@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import frc.robot.subsystems.armDirectional;
 
 
 /**
@@ -131,7 +131,7 @@ public static WPI_TalonSRX armMotor;
   driveTrainDifferentialDrive.setSafetyEnabled(false);
   driveTrainDifferentialDrive.setExpiration(0.1);
   driveTrainDifferentialDrive.setMaxOutput(0.7);   //You can set the power output by changing (1.0 is most power and .1 is much less power)
-
+// TODO this is where you can change the speed for the drivetrain
 
 
 /**

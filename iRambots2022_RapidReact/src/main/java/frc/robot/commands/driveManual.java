@@ -2,7 +2,7 @@
 package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-
+import frc.robot.RobotContainer;
 
 public class driveManual extends Command {
         public driveManual() {
@@ -20,6 +20,7 @@ public class driveManual extends Command {
         ////////////////////
         //Curvature Drive//
         ////////////////////
+        //TODO edit joystick mapping for the drivetrain
     double speed = Robot.RobotContainer.m_arcade.getRawAxis(1) - Robot.RobotContainer.m_arcade.getRawAxis(2) - -Robot.RobotContainer.m_driver.getRawAxis(2);
     double rotation = Robot.RobotContainer.m_arcade.getRawAxis(0) - Robot.RobotContainer.m_driver.getRawAxis(1);
     boolean quickTurn = speed > -0.15 && speed < 0.15;

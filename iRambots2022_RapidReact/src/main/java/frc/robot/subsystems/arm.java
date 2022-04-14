@@ -52,6 +52,6 @@ public class arm extends Subsystem {
           else {
               armMotorVictorSPX.set(ControlMode.PercentOutput, 0);
           }
-}    }
-
+    }//TODO -29398.000000
+}
 

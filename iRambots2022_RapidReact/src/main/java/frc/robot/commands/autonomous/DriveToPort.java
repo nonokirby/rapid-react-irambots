@@ -22,7 +22,7 @@ public class DriveToPort extends Command {
     @Override
     protected void execute() {
         double startTime = Timer.getMatchTime();
-        
+        //TODO change joystick mapping for drivetrain here
         if ( startTime < 6.0) { 
             Robot.driveTrain.driveCurvature(-Robot.RobotContainer.m_arcade.getRawAxis(3)* 0.7, Robot.RobotContainer.m_arcade.getRawAxis(0) * 0.7,true);
         } else {
