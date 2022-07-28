@@ -7,13 +7,16 @@
 
 package frc.robot;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.*;
-
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.SerialPort;
-//import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 //import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -59,18 +62,22 @@ public class Constants {
   public static WPI_VictorSPX directionalMotor;
   public static WPI_VictorSPX rightMotor;
   public static WPI_VictorSPX hookMotor;
-public static WPI_VictorSPX rollerMotor;
+  public static WPI_VictorSPX rollerMotor;
 
   //private static WPI_VictorSPX rollerMotor2;
 
 public static WPI_VictorSPX spinMotor;
 
-public static WPI_TalonSRX armMotor;
+public static CANSparkMax armMotor;
+
+//public static WPI_TalonSRX armMotor;
+  //public static CANSparkMax armMotor;
+
 
   public static void init() {
 
-    ahrs = new AHRS(SerialPort.Port.kMXP);
-
+  //  ahrs = new AHRS(SerialPort.Port.kMXP);
+  //  armMotor
    
     
 
@@ -108,11 +115,11 @@ public static WPI_TalonSRX armMotor;
 
   hookMotor = new WPI_VictorSPX(5);
 
-  rollerMotor = new WPI_VictorSPX(6);
-  rollerMotor.set(0.25);
+  //rollerMotor = new WPI_VictorSPX(6);
+  //rollerMotor.set(0.25);
 
-  spinMotor = new WPI_VictorSPX(6);
-  spinMotor.set(0.25);
+  //spinMotor = new WPI_VictorSPX(6);
+  //spinMotor.set(0.25);
 
   cargoMotor = new WPI_VictorSPX(6);
 
@@ -120,11 +127,13 @@ public static WPI_TalonSRX armMotor;
 
   directionalMotor = new WPI_VictorSPX(8);
   
-  armMotor = new WPI_TalonSRX(9);
-
+  //armMotor = new WPI_TalonSRX(9);
+  //armMotor = new CANSparkMax(9, MotorType.kBrushed);
 //Motor Controller Parameters
-  armMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
-  armMotor.setNeutralMode(NeutralMode.Brake);
+  //armMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+  //armMotor.setFeedback(FeedbackDevice.QuadEncoder);
+  //armMotor.setNeutralMode(NeutralMode.Brake);
+  //armMotor.setIdleMode(IdleMode.kBrake);
   directionalMotor.setNeutralMode(NeutralMode.Brake);
 
 //Define Options for Differential Drive
@@ -236,7 +245,7 @@ public static WPI_TalonSRX armMotor;
  SmartDashboard.putNumber(   "IMU_Update_Count",     Constants.ahrs.getUpdateCount());
  
  //Arm Encoder Distance
- //SmartDashboard.putNumber("Arm Distance", Constants.armMotor.getSelectedSensorPosition());
+ SmartDashboard.putNumber("Arm Distance", Constants.armMotor.getSelectedSensorPosition());
   }
 
 

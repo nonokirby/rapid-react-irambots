@@ -7,9 +7,14 @@
 
 package frc.robot;
 import java.util.concurrent.TimeUnit;
-
+import com.revrobotics.RelativeEncoder;
+import com.revrobotics.SparkMaxPIDController;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.SparkMaxRelativeEncoder;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -59,6 +64,12 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 public class Robot extends TimedRobot {
   public static driveTrain driveTrain;
   public static SequentialCommandGroup autonomousForward;
+
+  private static final int deviceID = 9;
+  private CANSparkMax armMotor;
+  private SparkMaxPIDController armPid;
+  public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
+  private RelativeEncoder arm_Encoder;
   // private static double autoStart;
   // What's the problem with autoStart?
   // nothing now, cant have a problem if it isnt a part of the running code
@@ -100,6 +111,33 @@ public class Robot extends TimedRobot {
       UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
     }).start();
     //TODO -31820.000000
+    armMotor = new CANSparkMax(deviceID, MotorType.kBrushed);
+    arm_Encoder = armMotor.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature, 4096);
+
+    armMotor.restoreFactoryDefaults();
+
+    armPid = armMotor.getPIDController();
+    armPid.setFeedbackDevice(arm_Encoder);
+
+
+    //arm motor coefficents
+    kP = 0.1;
+    kI = 1e-4;
+    kD = 1;
+    kIz = 0;
+    kFF = 0;
+    kMaxOutput = 1;
+    kMinOutput = -1;
+
+    armPid.setP(kP);
+    armPid.setI(kI);
+    armPid.setD(kD);
+    armPid.setIZone(kIz);
+    armPid.setFF(kFF);
+    armPid.setOutputRange(kMinOutput, kMaxOutput);
+
+
+
     Constants.init();
     driveTrain = new driveTrain();
     shooter = new shooter();
@@ -112,6 +150,7 @@ public class Robot extends TimedRobot {
    hookDirectional = new hookDirectional();
     maxShooter = new maxShooter();
     RobotContainer = new RobotContainer();
+    
 
     
     // m_chooser.addDefault("Default Auto", new autonomous());
@@ -312,6 +351,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    
   }
 
   /**
