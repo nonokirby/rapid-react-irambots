@@ -6,7 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
-import java.util.concurrent.TimeUnit;
+//import java.util.concurrent.TimeUnit;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 //import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.command.Subsystem;
+//import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -47,7 +47,7 @@ import frc.robot.subsystems.rollerSpeed;
 import frc.robot.subsystems.shooter;
 import frc.robot.subsystems.maxShooter;
 import frc.robot.subsystems.armDirectional;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+//import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -56,7 +56,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
  * creating this project, you must also update the build.gradle file in the
  * project.
  */
-public class Robot extends TimedRobot {
+@SuppressWarnings("unused") public class Robot extends TimedRobot {
   public static driveTrain driveTrain;
   public static SequentialCommandGroup autonomousForward;
   // private static double autoStart;
@@ -96,10 +96,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    
     new Thread(()-> {
-      UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+      UsbCamera camera = CameraServer.startAutomaticCapture();
     }).start();
-    //TODO -31820.000000
+    // -31820.000000
     Constants.init();
     driveTrain = new driveTrain();
     shooter = new shooter();
@@ -118,7 +119,7 @@ public class Robot extends TimedRobot {
     // chooser.addObject("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
     autonomousForward = new SequentialCommandGroup();
-    Command driveToPort_ = new Command() {
+    /*Command driveToPort_ = new Command() {
       @Override
       protected void initialize() {
         setTimeout(5.0);
@@ -134,7 +135,7 @@ public class Robot extends TimedRobot {
         } else {
           Robot.driveTrain.driveCurvature(Robot.oi.joy1.getRawAxis(3) * 0.0, Robot.oi.joy1.getRawAxis(0) * 0.0, false);
 
-        }*/
+        }*//*
 
       }
 
@@ -142,9 +143,9 @@ public class Robot extends TimedRobot {
       protected boolean isFinished() {
         return true;
       }
-    };
+    };*/
 
-    Command auto180 = new Command() {
+    /**Command auto180 = new Command() {
       @Override
       protected void initialize() {
         setTimeout(5.0);
@@ -154,24 +155,24 @@ public class Robot extends TimedRobot {
 
       @Override
       protected void execute() {
-        double time = Timer.getFPGATimestamp();
-        double startTime = Timer.getMatchTime();
+        //double time = Timer.getFPGATimestamp();
+        //double startTime = Timer.getMatchTime();
 
-        /*if (time - startTime < 0.5) {
+        if (time - startTime < 0.5) {
           Robot.driveTrain.driveCurvature(Robot.oi.joy1.getRawAxis(3) * 0, Robot.oi.joy1.getRawAxis(0) * .6, true);
         } else {
           Robot.driveTrain.driveCurvature(Robot.oi.joy1.getRawAxis(3) * 0.0, Robot.oi.joy1.getRawAxis(0) * 0.0, false);
 
-        }*/
+        }
 
       }
-
+      
       @Override
       protected boolean isFinished() {
         return true;
       }
     };
-
+    */
     // autonomousForward.addCommands(new Command());
     m_autonomousCommand = new DriveToPort();
   }
@@ -232,7 +233,7 @@ public class Robot extends TimedRobot {
     // schedule the autonomous command (example)
     // Scheduler.getInstance().add(drive);
     Scheduler.getInstance().add(new driveManual() {
-      double timeElapsed;
+      //double timeElapsed;
 
       @Override
       protected void initialize() {
