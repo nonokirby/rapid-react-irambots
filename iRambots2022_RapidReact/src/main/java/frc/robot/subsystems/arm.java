@@ -8,17 +8,10 @@
 package frc.robot.subsystems;
 
 
-//import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Constants;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.revrobotics.AlternateEncoderType;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.RelativeEncoder;
-import com.revrobotics.SparkMaxRelativeEncoder.Type;
-import com.ctre.phoenix.motorcontrol.ControlMode;
-//import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-//import com.ctre.phoenix.motorcontrol.NeutralMode;
+
 public class arm extends Subsystem {
 
     private final CANSparkMax m_motor = Constants.armMotor;
@@ -37,25 +30,32 @@ public class arm extends Subsystem {
     public void armDown() {
         m_motor.set(1.0);
     }
+    //stop makes the motor stop
     public void stop() {
-        m_motor.set(0.0);
+        while (getArmEncoder() <= -29500){
+            m_motor.set(0.5);
+        }
+            m_motor.set(0.0);
     }
     //Encoder commands
     public void resetEncoder() {
-        RelativeEncoder.setPosition(0);
+        m_motor.getAlternateEncoder(4096).setPosition(0);
     }
     public double getArmEncoder() {
-        return m_motor.getAlternateEncoder(4096)
+        return m_motor.getAlternateEncoder(4096).getPosition();
     }
     public void moveArm(double speed){
         if(speed < 0 && getArmEncoder() <= 2500){
-            //this is a test of github and wether or not it is stupid
-          m_motor.set(speed);
-        } else if(speed > 0 && getArmEncoder() >= -28512){
           m_motor.set(speed);
         }
-          else {
-              m_motor.set(0);
+          else if(speed > 0 && getArmEncoder() >= -29000){
+          m_motor.set(speed);
+        }
+          else if (speed < 0 && getArmEncoder() <= -29500 ) {
+          m_motor.set(-0.2);
+        }
+          else{
+          m_motor.set(0);
           }
     }// -29398.000000
 }

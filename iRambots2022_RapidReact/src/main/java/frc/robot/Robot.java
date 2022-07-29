@@ -106,7 +106,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
   private CANSparkMax m_motor;
   private SparkMaxPIDController m_pidController;
   public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
-
+  
   /**
    * An alternate encoder object is constructed using the GetAlternateEncoder() 
    * method on an existing CANSparkMax object. If using a REV Through Bore 
@@ -114,7 +114,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
    * revolution set to 8192
    * If using a vex mag encoder type is quadrature and cpr is 4096
    */
-  private RelativeEncoder m_alternateEncoder;
+  public RelativeEncoder m_alternateEncoder;
 
 
 
