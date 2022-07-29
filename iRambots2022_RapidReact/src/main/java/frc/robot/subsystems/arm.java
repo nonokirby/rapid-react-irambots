@@ -6,24 +6,23 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.RelativeEncoder;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.SparkMaxRelativeEncoder;
+import com.revrobotics.RelativeEncoder;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Constants;
-import frc.robot.commands.resetArmEncoder;
-import com.revrobotics.SparkMaxRelativeEncoder;
-
-
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.revrobotics.CANSparkMax.IdleMode;
 public class arm extends Subsystem {
 
-    //private final WPI_TalonSRX armMotorVictorSPX = Constants.armMotor;
-    private final CANSparkMax armMotorSpark = Constants.armMotor;
+    private final CANSparkMax armMotorCanSparkMax = Constants.armMotor;
     //@SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     @Override
     protected void initDefaultCommand() {
@@ -33,32 +32,31 @@ public class arm extends Subsystem {
 
     //armVert makes the motors run to lift up the arm 
     public void armVert() {
-        armMotorSpark.set(-1.0);
+        armMotorCanSparkMax.set(-1.0);
     }
     //armDown makes the motor run in reverse to bring the arm down
     public void armDown() {
-        armMotorSpark.set(1.0);
+        armMotorCanSparkMax.set(1.0);
     }
     public void stop() {
-        armMotorSpark.set(0.0);
+        armMotorCanSparkMax.set(0.0);
     }
-
     //Encoder commands
     public void resetEncoder() {
-        ();
+        Constants.armMotor.setselectedsensorposition(0);
     }
-    public Double getArmEncoder() {
-        return armMotorSpark.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature, 4096);
-    }
+    public double getArmEncoder() {
+        return com.revrobotics.RelativeEncoder.getVelocity();
+    return CANSparkMax.getEncoder(kQ);}
     public void moveArm(double speed){
         if(speed < 0 && getArmEncoder() <= 2500){
             //this is a test of github and wether or not it is stupid
-          armMotorSpark.set(speed);
+          armMotorCanSparkMax.set(speed);
         } else if(speed > 0 && getArmEncoder() >= -28512){
-          armMotorSpark.set(speed);
+          armMotorCanSparkMax.set(speed);
         }
           else {
-              armMotorSpark.set( 0);
+              armMotorCanSparkMax.set(speed);
           }
     }//TODO -29398.000000
 }

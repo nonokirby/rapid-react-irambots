@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.SparkMaxRelativeEncoder;
+import com.revrobotics.SparkMaxAlternateEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
@@ -112,7 +112,7 @@ public class Robot extends TimedRobot {
     }).start();
     //TODO -31820.000000
     armMotor = new CANSparkMax(deviceID, MotorType.kBrushed);
-    arm_Encoder = armMotor.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature, 4096);
+    arm_Encoder = armMotor.getEncoder(SparkMaxAlternateEncoder.Type.kQuadrature, 4096);
 
     armMotor.restoreFactoryDefaults();
 
@@ -226,7 +226,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putNumber("Arm Distance", Constants.armMotor.getSelectedSensorPosition());
+    SmartDashboard.putNumber("Arm Distance", arm_Encoder);
   }
  
   /**
@@ -258,7 +258,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
      m_autonomousCommand = m_chooser.getSelected();
-     Constants.armMotor.setSelectedSensorPosition(0);
+     Constants.armMotor.getEncoder();
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
      * switch(autoSelected) { case "My Auto": autonomousCommand = new

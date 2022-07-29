@@ -22,7 +22,11 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.armDirectional;
-
+import com.revrobotics.CANEncoder;
+import com.revrobotics.CANPIDController;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 /**
  * The Constants is a mapping from the ports sensors and actuators are wired into
@@ -128,12 +132,16 @@ public static CANSparkMax armMotor;
   directionalMotor = new WPI_VictorSPX(8);
   
   //armMotor = new WPI_TalonSRX(9);
+  CANSparkMax armSparkMax = new CANSparkMax(9, MotorType.kBrushed);
   //armMotor = new CANSparkMax(9, MotorType.kBrushed);
 //Motor Controller Parameters
   //armMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
   //armMotor.setFeedback(FeedbackDevice.QuadEncoder);
   //armMotor.setNeutralMode(NeutralMode.Brake);
   //armMotor.setIdleMode(IdleMode.kBrake);
+  armEncoder = armSparkMax.getEncoder();
+armEncoder.setInverted(false);
+armSparkMax.setFeedbackDevice(encoder);
   directionalMotor.setNeutralMode(NeutralMode.Brake);
 
 //Define Options for Differential Drive
