@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.*;
+import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj.SerialPort;
 //import edu.wpi.first.wpilibj.motorcontrol.Spark;
@@ -66,7 +67,7 @@ public static WPI_VictorSPX rollerMotor;
 
 public static WPI_VictorSPX spinMotor;
 
-public static WPI_TalonSRX armMotor;
+public static CANSparkMax armMotor;
 
   public static void init() {
 
@@ -121,12 +122,12 @@ public static WPI_TalonSRX armMotor;
 
   directionalMotor = new WPI_VictorSPX(8);
   
-  armMotor = new WPI_TalonSRX(9);
+  //armMotor = new CANSparkMax(9);
 
 //Motor Controller Parameters
-  armMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+ /* armMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
   armMotor.setNeutralMode(NeutralMode.Brake);
-  directionalMotor.setNeutralMode(NeutralMode.Brake);
+  directionalMotor.setNeutralMode(NeutralMode.Brake);*/
 
 //Define Options for Differential Drive
   driveTrainDifferentialDrive.setSafetyEnabled(false);

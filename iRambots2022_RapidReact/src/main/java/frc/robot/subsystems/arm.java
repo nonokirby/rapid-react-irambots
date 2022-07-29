@@ -7,16 +7,21 @@
 
 package frc.robot.subsystems;
 
+
 //import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Constants;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.revrobotics.AlternateEncoderType;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
+import com.revrobotics.SparkMaxRelativeEncoder.Type;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 //import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 //import com.ctre.phoenix.motorcontrol.NeutralMode;
 public class arm extends Subsystem {
 
-    private final WPI_TalonSRX armMotorVictorSPX = Constants.armMotor;
+    private final CANSparkMax m_motor = Constants.armMotor;
     //@SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     @Override
     protected void initDefaultCommand() {
@@ -26,31 +31,31 @@ public class arm extends Subsystem {
 
     //armVert makes the motors run to lift up the arm 
     public void armVert() {
-        armMotorVictorSPX.set(-1.0);
+        m_motor.set(-1.0);
     }
     //armDown makes the motor run in reverse to bring the arm down
     public void armDown() {
-        armMotorVictorSPX.set(1.0);
+        m_motor.set(1.0);
     }
     public void stop() {
-        armMotorVictorSPX.set(0.0);
+        m_motor.set(0.0);
     }
     //Encoder commands
     public void resetEncoder() {
-        armMotorVictorSPX.setSelectedSensorPosition(0);
+        RelativeEncoder.setPosition(0);
     }
-    public double getArmEncoder() {
-        return armMotorVictorSPX.getSelectedSensorPosition();
+    public RelativeEncoder getArmEncoder() {
+        return m_motor.getAlternateEncoder(4096)
     }
     public void moveArm(double speed){
         if(speed < 0 && getArmEncoder() <= 2500){
             //this is a test of github and wether or not it is stupid
-          armMotorVictorSPX.set(ControlMode.PercentOutput, speed);
+          m_motor.set(speed);
         } else if(speed > 0 && getArmEncoder() >= -28512){
-          armMotorVictorSPX.set(ControlMode.PercentOutput, speed);
+          m_motor.set(speed);
         }
           else {
-              armMotorVictorSPX.set(ControlMode.PercentOutput, 0);
+              m_motor.set(0);
           }
     }// -29398.000000
 }

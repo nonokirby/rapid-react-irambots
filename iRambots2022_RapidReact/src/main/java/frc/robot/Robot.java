@@ -99,9 +99,9 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
    * Change these parameters to match your setup
    */
   private static final int kCanID = 1;
-  private static final MotorType kMotorType = MotorType.kBrushless;
+  private static final MotorType kMotorType = MotorType.kBrushed;
   private static final SparkMaxAlternateEncoder.Type kAltEncType = SparkMaxAlternateEncoder.Type.kQuadrature;
-  private static final int kCPR = 8192;
+  private static final int kCPR = 4096;
 
   private CANSparkMax m_motor;
   private SparkMaxPIDController m_pidController;
@@ -112,6 +112,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
    * method on an existing CANSparkMax object. If using a REV Through Bore 
    * Encoder, the type should be set to quadrature and the counts per 
    * revolution set to 8192
+   * If using a vex mag encoder type is quadrature and cpr is 4096
    */
   private RelativeEncoder m_alternateEncoder;
 
@@ -268,7 +269,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
    */
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putNumber("Arm Distance", Constants.armMotor.getSelectedSensorPosition());
+    //SmartDashboard.putNumber("Arm Distance", Constants.armMotor.getSelectedSensorPosition());
   }
  
   /**
@@ -300,7 +301,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
   @Override
   public void autonomousInit() {
      m_autonomousCommand = m_chooser.getSelected();
-     Constants.armMotor.setSelectedSensorPosition(0);
+     //Constants.armMotor.setSelectedSensorPosition(0);
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
      * switch(autoSelected) { case "My Auto": autonomousCommand = new
