@@ -44,7 +44,7 @@ public class arm extends Subsystem {
     public void resetEncoder() {
         RelativeEncoder.setPosition(0);
     }
-    public RelativeEncoder getArmEncoder() {
+    public double getArmEncoder() {
         return m_motor.getAlternateEncoder(4096)
     }
     public void moveArm(double speed){
