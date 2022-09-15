@@ -10,13 +10,13 @@ package frc.robot.subsystems;
 //import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Constants;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 //import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 //import com.ctre.phoenix.motorcontrol.NeutralMode;
 public class arm extends Subsystem {
 
-    private final WPI_TalonSRX armMotorVictorSPX = Constants.armMotor;
+    private final WPI_VictorSPX armMotorVictorSPX = Constants.armMotor;
     //@SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     @Override
     protected void initDefaultCommand() {

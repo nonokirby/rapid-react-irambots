@@ -24,10 +24,10 @@ private final WPI_VictorSPX directionalMotorVictorSPX = Constants.directionalMot
     // setDefaultCommand(new MySpecialCommand());
   }
   public void armRight()  {
-directionalMotorVictorSPX.set(-0.3);
+directionalMotorVictorSPX.set(-.2);
   }
   public void armLeft()  {
-directionalMotorVictorSPX.set(0.3);
+directionalMotorVictorSPX.set(.07);
   }
   public void stop() {
     directionalMotorVictorSPX.set(0.0);

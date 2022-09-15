@@ -8,7 +8,7 @@
 package frc.robot;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+//import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.*;
 
@@ -65,7 +65,7 @@ public static WPI_VictorSPX rollerMotor;
 
 public static WPI_VictorSPX spinMotor;
 
-public static WPI_TalonSRX armMotor;
+public static WPI_VictorSPX armMotor;
 
   public static void init() {
 
@@ -120,7 +120,7 @@ public static WPI_TalonSRX armMotor;
 
   directionalMotor = new WPI_VictorSPX(8);
   
-  armMotor = new WPI_TalonSRX(9);
+  armMotor = new WPI_VictorSPX(9);
 
 //Motor Controller Parameters
   armMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
